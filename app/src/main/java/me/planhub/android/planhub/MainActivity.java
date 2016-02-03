@@ -42,9 +42,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
                         android.R.layout.simple_list_item_1,
                         android.R.id.text1,
                         new String[]{
-                                getString(R.string.title_section1),
-                                getString(R.string.title_section2),
-                                getString(R.string.title_section3),
+                                getString(R.string.title_overview),
+                                getString(R.string.title_planner),
+                                getString(R.string.title_hwView),
+                                getString(R.string.title_admin),
                         }),
                 this);
     }
