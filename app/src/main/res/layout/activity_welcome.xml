@@ -23,7 +23,8 @@
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
-        android:elegantTextHeight="false" />
+        android:elegantTextHeight="false"
+        android:onClick="onLogInButton" />
 
     <TextView
         android:layout_width="wrap_content"
