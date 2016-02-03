@@ -14,15 +14,16 @@ import java.util.Scanner;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class APIClient extends AsyncTask<String, void, String> {
+public class APIClient extends AsyncTask<String, Void, String> {
 
-    public APIClient(Context ctx) {
+    public APIClient() {
 
     }
-    protected String doInBackground(String... params) throws MalformedURLException, IOException {
-        URL url = new URL("https://planhub.me/api/v1");
-        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+    protected String doInBackground(String... params) {
+        HttpsURLConnection conn = null;
         try {
+            URL url = new URL("https://planhub.me/api/v1/");
+            conn = (HttpsURLConnection) url.openConnection();
             InputStream in = new BufferedInputStream(conn.getInputStream());
             Scanner s = new Scanner(in).useDelimiter("\\A");
             if (!s.hasNext()) {
@@ -30,19 +31,18 @@ public class APIClient extends AsyncTask<String, void, String> {
                 return "error";
             }
             return s.next();
+        } catch (IOException e) {
+            e.printStackTrace();
         } finally {
-            conn.disconnect();
+            if (conn != null) {
+                conn.disconnect();
+            }
         }
         return "error";
     }
 
     protected void onPostExecute(String resp) {
-        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(findActivity);
-        dlgAlert.setMessage(resp);
-        dlgAlert.setTitle("It worked!");
-        dlgAlert.setPositiveButton("OK", null);
-        dlgAlert.setCancelable(true);
-        dlgAlert.create().show();
+        Log.i("PlanHub", resp);
     }
 
     public static String getNonce() {

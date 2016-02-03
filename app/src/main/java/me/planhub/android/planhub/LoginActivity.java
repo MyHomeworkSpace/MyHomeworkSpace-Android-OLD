@@ -286,11 +286,8 @@ public class LoginActivity extends Activity /*implements LoaderCallbacks<Cursor>
             showProgress(false);
 
             if (success) {
-                try {
-                    APIClient.get("hex", getBaseContext());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                APIClient cli = new APIClient();
+                cli.execute("hex");
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
