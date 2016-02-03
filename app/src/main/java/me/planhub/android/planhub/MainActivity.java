@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -127,7 +128,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+            Bundle b = getArguments();
+            int sectionNumber = b.getInt(ARG_SECTION_NUMBER);
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            if (sectionNumber == 1) {
+                rootView = inflater.inflate(R.layout.fragment_overview, container, false);
+            }
             return rootView;
         }
     }
